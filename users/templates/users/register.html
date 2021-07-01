@@ -1,0 +1,31 @@
+<!-- To overwrite the block content in the base.html -->
+{% extends "blog/base.html" %}
+<!-- Import crispy form -->
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            <!-- token required : form security protection -->
+            {% csrf_token %}
+            <!-- group related element in a form -->
+            <fieldset class="form-group">
+                <!-- legend -->
+                <legend class="border-bottom mb-4">
+                    Join Today
+                </legend>
+                <!-- form content -->
+                {{ form|crispy }}
+            </fieldset>
+            <!-- button -->
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already Have An Account?
+                <a href="{% url 'login' %}" class="ml-2"> Sign In</a>
+            </small>
+        </div>
+    </div>
+{% endblock content%}
